@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { User, Calendar, Ruler, Weight } from 'lucide-react';
 import type { Character } from '../types/Character.ts';
 
