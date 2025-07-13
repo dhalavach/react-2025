@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Search } from "lucide-react";
+import React, { Component } from 'react';
+import { Search } from 'lucide-react';
 
 interface Props {
   onSearch: (searchTerm: string) => void;
@@ -11,12 +11,12 @@ interface State {
 }
 
 export class SearchSection extends Component<Props, State> {
-  private readonly STORAGE_KEY = "starwars-search-term";
+  private readonly STORAGE_KEY = 'starwars-search-term';
 
   constructor(props: Props) {
     super(props);
 
-    const savedSearchTerm = localStorage.getItem(this.STORAGE_KEY) || "";
+    const savedSearchTerm = localStorage.getItem(this.STORAGE_KEY) || '';
 
     this.state = {
       searchTerm: savedSearchTerm,
@@ -40,7 +40,7 @@ export class SearchSection extends Component<Props, State> {
   };
 
   private handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       this.handleSearch();
     }
   };
@@ -75,7 +75,7 @@ export class SearchSection extends Component<Props, State> {
               disabled={isLoading}
               className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors font-medium"
             >
-              {isLoading ? "Searching..." : "Search"}
+              {isLoading ? 'Searching...' : 'Search'}
             </button>
           </div>
         </div>
