@@ -3,7 +3,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { SearchSection } from './components/SearchSection';
 import { ResultsSection } from './components/ResultsSection';
 import type { Character } from './types/Character';
-import { APIService } from './services/api';
+//import { APIService } from './services/api';
 import { Bug } from 'lucide-react';
 
 interface State {
@@ -33,11 +33,23 @@ class AppContent extends Component<object, State> {
     });
 
     try {
-      const response = await APIService.searchCharacters(searchTerm);
+      // const response = await APIService.searchCharacters(searchTerm);
       this.setState({
-        characters: response.results,
+        //characters: response.results,
         isLoading: false,
       });
+      const response = await fetch(
+        `https://swapi.tech/api/people/?name=${encodeURIComponent(searchTerm)}`
+      );
+      const data = await response.json();
+
+      if (data.result && data.result.length > 0) {
+        this.setState({
+          characters: data.result.map(
+            (item: { properties: Character }) => item.properties
+          ),
+        });
+      }
     } catch (error) {
       console.error('Search error:', error);
       this.setState({
